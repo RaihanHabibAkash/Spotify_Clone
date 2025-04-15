@@ -1,0 +1,14 @@
+import { Router } from "express";
+import { getAllSongs, getFeaturedSongs, getMadeForYouSongs, getTrendingSongs } from "../controllers/song.controller.js";
+import { protectRoute, requireAdmin } from "../middlewares/auth.middleware.js";
+
+const router = Router();
+
+// for Admin
+router.get("/", protectRoute, requireAdmin, getAllSongs);
+// for User
+router.get("/featured", getFeaturedSongs);
+router.get("/made-for-you", getMadeForYouSongs);
+router.get("/trending", getTrendingSongs);
+
+export default router;
