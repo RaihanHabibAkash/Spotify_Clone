@@ -134,7 +134,7 @@ export const useMusicStore = create((set) => ({
             set((state) => ({
                 albums: state.albums.filter((album) => album._id !== id),
                 songs: state.songs.map((song) => 
-                    song.albumId === state.album.find((a) => a._id === id)?.title ? { ...song, album: null } : song
+                    song.albumId === state.albums.find((a) => a._id === id)?.title ? { ...song, album: null } : song
                 )
             }));
             toast.success("Album deleted successfully");
