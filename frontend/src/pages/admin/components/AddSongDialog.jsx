@@ -15,8 +15,10 @@ import { useMusicStore } from "@/stores/useMusicStore";
 import { Plus, Upload } from "lucide-react";
 import { useRef, useState } from "react";
 import toast from "react-hot-toast";
+import { useAuth } from "@clerk/clerk-react";
 
 const AddSongDialog = () => {
+	const { getToken } = useAuth();
 	const { albums } = useMusicStore();
 	const [songDialogOpen, setSongDialogOpen] = useState(false);
 	const [isLoading, setIsLoading] = useState(false);
@@ -43,7 +45,7 @@ const AddSongDialog = () => {
 			if (!files.audio || !files.image) {
 				return toast.error("Please upload both audio and image files");
 			}
-
+			const token = await getToken();
 			const formData = new FormData();
 
 			formData.append("title", newSong.title);
@@ -59,6 +61,7 @@ const AddSongDialog = () => {
 			await axiosInstance.post("/admin/songs", formData, {
 				headers: {
 					"Content-Type": "multipart/form-data",
+					"Authorization": `Bearer ${token}`,
 				},
 			});
 
