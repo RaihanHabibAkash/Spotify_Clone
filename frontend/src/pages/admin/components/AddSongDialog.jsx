@@ -27,7 +27,7 @@ const AddSongDialog = () => {
 		title: "",
 		artist: "",
 		album: "",
-		duration: "0",
+		duration: 0,
 	});
 
 	const [files, setFiles] = useState({
