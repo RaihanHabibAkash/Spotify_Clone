@@ -20,7 +20,7 @@ dotenv.config();
 
 const __dirname = path.resolve();//variable in File upload
 const app = express();
-const PORT = process.env.PORT || 3000;
+const PORT = process.env.PORT || 4000;
 
 app.use(cors(
     {
