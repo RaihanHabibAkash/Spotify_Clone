@@ -1,5 +1,6 @@
 import { axiosInstance } from "@/lib/axios";
 import { useAuthStore } from "@/stores/useAuthStore";
+import { useChatStore } from "@/stores/useChatStore";
 import { useAuth } from "@clerk/clerk-react";
 import { Loader } from "lucide-react";
 import { useEffect, useState } from "react";
@@ -14,9 +15,9 @@ const updateApiToken = (token) => {
 }
 
 const AuthProvider = ({children}) => {
-    const { getToken } = useAuth();
+    const { getToken, userId } = useAuth();
     const { checkAdminStatus } = useAuthStore();
-    
+    const { initSocket, disconnectSocket } = useChatStore();
     const [loading, setLoading] = useState(true);
 
     useEffect(() => {
@@ -27,6 +28,10 @@ const AuthProvider = ({children}) => {
                 // if the user is admin
                 if(token){
                     await checkAdminStatus();
+                    // init socket
+                    if(userId){
+                        initSocket(userId);
+                    } 
                 }
 
             } catch (error) {
@@ -39,7 +44,8 @@ const AuthProvider = ({children}) => {
         
         initAuth();
 
-    }, [getToken]);
+        return () => disconnectSocket();
+    }, [getToken, userId, checkAdminStatus, initSocket, disconnectSocket]);
  
     if(loading) return(
         <div className="h-screen w-full flex items-center justify-center">
