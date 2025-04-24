@@ -1,0 +1,22 @@
+{
+  "name": "spotify_colone",
+  "version": "1.0.0",
+  "description": "This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.",
+  "main": "index.js",
+  "scripts": {
+    "build": "npm install --prefix backend && npm install --prefix frontend && npm run build --prefix frontend",
+    "start": "npm start --prefix backend"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/RaihanHabibAkash/Spotify_Clone.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "type": "commonjs",
+  "bugs": {
+    "url": "https://github.com/RaihanHabibAkash/Spotify_Clone/issues"
+  },
+  "homepage": "https://github.com/RaihanHabibAkash/Spotify_Clone#readme"
+}
