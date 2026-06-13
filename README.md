@@ -312,8 +312,9 @@ Example:
 ## 👨‍💻 Author
 
 **Raihan Habib Akash**
+---
 Software Engineer | Competitive Programmer
-
+---
 |                |                      |
 | -------------- | -------------------- |
 | **Role**       | Full Stack Developer |
